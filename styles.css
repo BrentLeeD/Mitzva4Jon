@@ -1,0 +1,124 @@
+﻿body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+h1, h2, h3 {
+    text-align: center;
+}
+
+#challahOrderForm {
+    max-width: 400px;
+    margin: 0 auto;
+    border: 1px solid #ccc;
+    padding: 20px;
+}
+
+.flavorSelection {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+label {
+    flex: 1;
+}
+
+input[type="number"] {
+    width: 50px;
+    margin-left: 10px;
+}
+
+button {
+    display: block;
+    margin: 20px auto;
+}
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+}
+
+h1 {
+  text-align: center;
+}
+
+h2 {
+  margin-top: 20px;
+}
+
+#challahOrderForm {
+  margin-bottom: 20px;
+}
+
+#flavors {
+  margin-bottom: 20px;
+}
+
+.flavorSelection {
+  margin-bottom: 10px;
+}
+
+label {
+  display: block;
+}
+
+input[type="number"] {
+  width: 40px;
+}
+
+#addToBasketBtn {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+#addToBasketBtn:hover {
+  background-color: #45a049;
+}
+
+#clearCartBtn {
+  background-color: #f44336;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+#clearCartBtn:hover {
+  background-color: #d32f2f;
+}
+
+#checkoutBtn {
+  background-color: #2196f3;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+#checkoutBtn:hover {
+  background-color: #1976d2;
+}
+
+#basketContents {
+  margin-top: 20px;
+}
+
+#totalCost {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+p {
+  margin: 5px 0;
+}
+
+/* Add additional CSS for a better layout if needed */
