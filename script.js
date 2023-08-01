@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const totalCost = document.getElementById("totalCost");
 
   // Challah prices in ZAR
-  const chocolatePrice = 35;
+  const chocolatePrice = 40;
   const sesamePrice = 35;
   const plainPrice = 35;
   const streuselPrice = 40;
@@ -104,7 +104,7 @@ document.addEventListener("DOMContentLoaded", function () {
         alert(orderDetails);
 
         const totalAmount = calculateTotalAmount();
-        const checkoutUrl = `https://pos.snapscan.io/qr/Bu-elYzb?id=challah_${parentName}&amount=${totalAmount}`;
+        const checkoutUrl = `https://pos.snapscan.io/qr/Bu-elYzb?id=challah_${parentName}&amount=${totalAmount}00`;
         window.open(checkoutUrl, "_blank");
       } else {
         alert("Please fill out all the required information.");
