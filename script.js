@@ -100,16 +100,36 @@ document.addEventListener("DOMContentLoaded", function () {
           Order Details:
           ${getOrderSummary()}
         `;
+                const totalAmount = calculateTotalAmount();
+                const orderData = {
+          Parent: parentName,
+          Phone: phoneNumber,
+          Email: email,
+          'Order Breakdown': orderDetails,
+          Cost: `${totalAmount} ZAR`,
+        };
 
         alert(orderDetails);
+const apiKey = 'UmaiF3c39grmhByWn4MPZVYfklm90CFWPZxRx8cfi3MZrYXEt98tK4Tp7wo';
+        const sheetId = '1A2c5YPjGiMzbTco8MsCbNCHDimWycyrq1iVd1Pulyjg';
+        const apiUrl = `https://api.sheetson.com/v2/sheets/CHALLAH`;
 
-        const totalAmount = calculateTotalAmount();
+        fetch(apiUrl, {
+          method: 'POST',
+          headers: {
+            Authorization: `Bearer ${apiKey}`,
+            'X-Spreadsheet-Id': sheetId,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(orderData),
+        })
         const checkoutUrl = `https://pos.snapscan.io/qr/Bu-elYzb?id=challah_${parentName}&amount=${totalAmount}00`;
         window.open(checkoutUrl, "_blank");
       } else {
         alert("Please fill out all the required information.");
       }
     }
+    
   });
 
   function getOrderSummary() {
@@ -129,6 +149,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     return overallTotal;
   }
+  
 
   function getWeekDate(week) {
     switch (week) {
