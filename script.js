@@ -23,6 +23,8 @@ document.addEventListener("DOMContentLoaded", function () {
     week4: 0,
     week5: 0,
     week6: 0,
+    week7: 0,
+    week8: 0,
   };
 
   // Store selected flavors and quantities
@@ -185,15 +187,21 @@ const orderData = {
       case "week2":
         return "10 August";
       case "week3":
-        return "17 August";
-      case "week4":
-        return "24 August";
-      case "week5":
-        return "31 August";
-      case "week6":
-        return "7 September";
-      default:
-        return "Whole Term";
+        return '13 October';
+      case 'week2':
+        return '20 October';
+      case 'week3':
+        return '27 October';
+      case 'week4':
+        return '03 November';
+      case 'week5':
+        return '10 November';
+      case 'week6':
+        return '17 November';
+      case 'week7':
+        return '24 November';
+      case 'week8':
+        return '1 December';		    
     }
   }
 
