@@ -1,124 +1,103 @@
 body {
     font-family: Arial, sans-serif;
-    margin: 20px;
-}
-
-h1, h2, h3 {
+    margin: 0;
+    padding: 0;
+    background-color: #f0f8ff;
     text-align: center;
 }
 
-#challahOrderForm {
-    max-width: 400px;
-    margin: 0 auto;
-    border: 1px solid #ccc;
+header {
+    background-color: #ffcc00;
     padding: 20px;
-}
-
-.flavorSelection {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-}
-
-label {
-    flex: 1;
-}
-
-input[type="number"] {
-    width: 50px;
-    margin-left: 10px;
-}
-
-button {
-    display: block;
-    margin: 20px auto;
-}
-body {
-  font-family: Arial, sans-serif;
-  margin: 20px;
+    animation: fadeIn 2s;
 }
 
 h1 {
-  text-align: center;
+    margin: 0;
+    font-size: 2.5em;
+    color: #333;
 }
 
-h2 {
-  margin-top: 20px;
+.tagline {
+    margin: 10px 0;
+    font-size: 1.2em;
+    color: #666;
 }
 
-#challahOrderForm {
-  margin-bottom: 20px;
+.main-menu {
+    margin: 50px 0;
 }
 
-#flavors {
-  margin-bottom: 20px;
+.main-button {
+    background-color: #007bff;
+    border: none;
+    color: white;
+    padding: 20px 40px;
+    font-size: 1.5em;
+    margin: 20px;
+    cursor: pointer;
+    border-radius: 10px;
+    animation: pulse 2s infinite;
 }
 
-.flavorSelection {
-  margin-bottom: 10px;
+.main-button:hover {
+    background-color: #0056b3;
+    animation: none;
 }
 
-label {
-  display: block;
+.scrolling-text {
+    margin: 20px 0;
+    font-size: 1.2em;
+    color: #333;
+    overflow: hidden;
+    white-space: nowrap;
+    animation: scrollText 10s linear infinite;
 }
 
-input[type="number"] {
-  width: 40px;
+.mitzva-counter {
+    font-size: 1.5em;
+    color: #333;
+    margin-top: 20px;
+    animation: countUp 2s ease-out;
 }
 
-#addToBasketBtn {
-  background-color: #4caf50;
-  color: white;
-  padding: 10px 20px;
-  font-size: 16px;
-  border: none;
-  cursor: pointer;
-  border-radius: 5px;
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
-#addToBasketBtn:hover {
-  background-color: #45a049;
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
 }
 
-#clearCartBtn {
-  background-color: #f44336;
-  color: white;
-  padding: 10px 20px;
-  font-size: 16px;
-  border: none;
-  cursor: pointer;
-  border-radius: 5px;
+@keyframes scrollText {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
 }
 
-#clearCartBtn:hover {
-  background-color: #d32f2f;
+@keyframes countUp {
+    from {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
 }
-
-#checkoutBtn {
-  background-color: #2196f3;
-  color: white;
-  padding: 10px 20px;
-  font-size: 16px;
-  border: none;
-  cursor: pointer;
-  border-radius: 5px;
-}
-
-#checkoutBtn:hover {
-  background-color: #1976d2;
-}
-
-#basketContents {
-  margin-top: 20px;
-}
-
-#totalCost {
-  font-size: 18px;
-  font-weight: bold;
-}
-
-p {
-  margin: 5px 0;
-}
-
-/* Add additional CSS for a better layout if needed */
