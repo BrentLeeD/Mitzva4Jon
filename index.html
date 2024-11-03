@@ -1,26 +1,275 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mitzva4Jonny</title>
-    <link rel="stylesheet" href="styles.css">
+  <title>Hudi's Special Birthday Game</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background: linear-gradient(to bottom, #1a1a2e, #16213e);
+      font-family: Arial, sans-serif;
+    }
+    #game-container {
+      width: 100vw;
+      height: 100vh;
+      position: relative;
+    }
+    .bubble {
+      position: absolute;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #1a1a2e;
+      cursor: pointer;
+      user-select: none;
+      transition: transform 0.1s;
+    }
+    .bubble-small {
+      width: 50px;
+      height: 50px;
+      font-size: 20px;
+    }
+    .bubble-medium {
+      width: 70px;
+      height: 70px;
+      font-size: 28px;
+    }
+    .bubble-large {
+      width: 90px;
+      height: 90px;
+      font-size: 36px;
+    }
+    .bubble:hover {
+      transform: scale(1.1);
+    }
+    .bubble-blue {
+      background: radial-gradient(circle at 30% 30%, rgba(100,180,255,0.8), rgba(100,180,255,0.4));
+    }
+    .bubble-pink {
+      background: radial-gradient(circle at 30% 30%, rgba(255,182,193,0.8), rgba(255,182,193,0.4));
+    }
+    .bubble-purple {
+      background: radial-gradient(circle at 30% 30%, rgba(147,112,219,0.8), rgba(147,112,219,0.4));
+    }
+    .bubble-green {
+      background: radial-gradient(circle at 30% 30%, rgba(144,238,144,0.8), rgba(144,238,144,0.4));
+    }
+    #score {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      color: white;
+      font-size: 24px;
+    }
+    #name-progress {
+      position: fixed;
+      top: 60px;
+      left: 20px;
+      color: #4CAF50;
+      font-size: 32px;
+      letter-spacing: 5px;
+    }
+    #family-message {
+      position: fixed;
+      top: 10px;
+      right: 20px;
+      color: white;
+      font-size: 18px;
+      text-align: right;
+      line-height: 1.5;
+    }
+    #celebration {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 48px;
+      color: #FFD700;
+      display: none;
+      text-align: center;
+      background: rgba(0,0,0,0.8);
+      padding: 40px;
+      border-radius: 20px;
+      line-height: 1.5;
+    }
+    #instructions {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(255, 255, 255, 0.9);
+      padding: 30px;
+      border-radius: 15px;
+      text-align: center;
+    }
+    .instruction-text {
+      font-size: 22px;
+      margin: 10px 0;
+    }
+    .family-signature {
+      font-size: 20px;
+      margin-top: 20px;
+      color: #4CAF50;
+    }
+    #countdown {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 120px;
+      color: white;
+      display: none;
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <h1>Mitzva4Jonny</h1>
-        <p class="tagline">Transforming Acts of Kindness into Strength for Jonny</p>
-    </header>
-    <main>
-        <div class="main-menu">
-            <button class="main-button" id="did-mitzva">I Did a Mitzva for Jonny</button>
-            <button class="main-button" id="want-mitzva">I Want to Do a Mitzva for Jonny</button>
-        </div>
-    </main>
-    <footer>
-        <p class="scrolling-text" id="community-feed">...</p>
-        <p class="mitzva-counter" id="mitzva-counter">0 Mitzvot done for Jonny so far</p>
-    </footer>
-    <script src="scripts.js"></script>
+  <div id="game-container">
+    <div id="score">Score: 0</div>
+    <div id="name-progress"></div>
+    <div id="family-message">
+      With love from:<br>
+      Uncle Brent & Aunt Vikki<br>
+      Gracie, Isaiah & Rina
+    </div>
+    <div id="celebration">
+      🎉 Happy Birthday Yehuda! 🎉<br>
+      You're Amazing!<br><br>
+      With lots of love from<br>
+      Uncle Brent & Aunt Vikki<br>
+      and your cousins<br>
+      Gracie, Isaiah & Rina ❤️
+    </div>
+    <div id="instructions">
+      <h2>Happy Birthday Yehuda! 🎈</h2>
+      <p class="instruction-text">Time for a special birthday challenge!</p>
+      <p class="instruction-text">Pop the bubbles with your name letters in order:</p>
+      <p style="color: #4CAF50; font-size: 36px;">Y-E-H-U-D-A</p>
+      <p class="instruction-text">Click the correct bubble to pop it!</p>
+      <p class="instruction-text">Watch out - bubbles come in different sizes!</p>
+      <div class="family-signature">
+        A special game made just for you by<br>
+        Brent,Vikki<br>
+        Gracie, Isaiah & Rina
+      </div>
+      <button onclick="startCountdown()" style="font-size: 24px; padding: 10px 20px; background: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer; margin-top: 20px;">
+        Start Game!
+      </button>
+    </div>
+    <div id="countdown"></div>
+  </div>
+
+  <script>
+    const name = 'YEHUDA';
+    let currentIndex = 0;
+    let score = 0;
+    let bubbles = [];
+    let gameActive = false;
+
+    const colors = ['bubble-blue', 'bubble-pink', 'bubble-purple', 'bubble-green'];
+    const sizes = ['bubble-small', 'bubble-medium', 'bubble-large'];
+
+    function updateNameProgress() {
+      const completed = name.substring(0, currentIndex);
+      const remaining = name.substring(currentIndex);
+      document.getElementById('name-progress').innerHTML = 
+        `<span style="color: #4CAF50">${completed}</span><span style="color: #666">${remaining}</span>`;
+    }
+
+    function startCountdown() {
+      document.getElementById('instructions').style.display = 'none';
+      document.getElementById('countdown').style.display = 'block';
+      let count = 3;
+      
+      const countInterval = setInterval(() => {
+        if (count > 0) {
+          document.getElementById('countdown').textContent = count;
+          count--;
+        } else {
+          document.getElementById('countdown').style.display = 'none';
+          clearInterval(countInterval);
+          startGame();
+        }
+      }, 1000);
+    }
+
+    function startGame() {
+      gameActive = true;
+      updateNameProgress();
+      setInterval(createBubble, 800); // Slightly faster bubble creation
+      setInterval(updateGame, 16);
+    }
+
+    function createBubble() {
+      if (!gameActive) return;
+      
+      const bubble = document.createElement('div');
+      bubble.className = `bubble ${colors[Math.floor(Math.random() * colors.length)]} ${sizes[Math.floor(Math.random() * sizes.length)]}`;
+      bubble.textContent = String.fromCharCode(65 + Math.floor(Math.random() * 26));
+      
+      // Increased chance of correct letter (25%)
+      if (Math.random() < 0.25) {
+        bubble.textContent = name[currentIndex];
+      }
+      
+      bubble.style.left = Math.random() * (window.innerWidth - 90) + 'px';
+      bubble.style.bottom = '-90px';
+      
+      bubble.addEventListener('click', () => {
+        if (bubble.textContent === name[currentIndex]) {
+          score += 100;
+          document.getElementById('score').textContent = `Score: ${score}`;
+          currentIndex++;
+          updateNameProgress();
+          
+          bubble.style.transform = 'scale(1.5)';
+          bubble.style.opacity = '0';
+          setTimeout(() => bubble.remove(), 300);
+          
+          if (currentIndex >= name.length) {
+            celebrate();
+          }
+        }
+      });
+      
+      document.getElementById('game-container').appendChild(bubble);
+      bubbles.push({
+        element: bubble,
+        speed: 1.5 + Math.random() * 2, // Adjusted speed range
+        position: -90
+      });
+    }
+
+    function celebrate() {
+      gameActive = false;
+      document.getElementById('celebration').style.display = 'block';
+      
+      for (let i = 0; i < 50; i++) {
+        setTimeout(() => {
+          const particle = document.createElement('div');
+          particle.className = `bubble ${colors[Math.floor(Math.random() * colors.length)]} bubble-small`;
+          particle.textContent = '✨';
+          particle.style.left = Math.random() * window.innerWidth + 'px';
+          particle.style.top = Math.random() * window.innerHeight + 'px';
+          document.getElementById('game-container').appendChild(particle);
+          setTimeout(() => particle.remove(), 2000);
+        }, i * 100);
+      }
+    }
+
+    function updateGame() {
+      bubbles.forEach((bubble, index) => {
+        bubble.position += bubble.speed;
+        bubble.element.style.bottom = bubble.position + 'px';
+        
+        if (bubble.position > window.innerHeight + 90) {
+          bubble.element.remove();
+          bubbles.splice(index, 1);
+        }
+      });
+    }
+
+    updateNameProgress();
+  </script>
 </body>
 </html>
